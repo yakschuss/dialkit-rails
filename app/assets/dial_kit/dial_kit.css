@@ -1,0 +1,698 @@
+/* ─────────────────────────────────────────────────────────
+ * DialKit for Rails — Styles
+ * Matched to dialkit npm package (Josh Puckett / Interface Craft)
+ * ───────────────────────────────────────────────────────── */
+
+#dial-kit-panel {
+  /* Surfaces */
+  --dial-surface: rgba(255, 255, 255, 0.05);
+  --dial-surface-hover: rgba(255, 255, 255, 0.1);
+  --dial-surface-active: rgba(255, 255, 255, 0.11);
+
+  /* Text hierarchy */
+  --dial-text-root: #FFFFFF;
+  --dial-text-section: rgba(255, 255, 255, 0.7);
+  --dial-text-label: rgba(255, 255, 255, 0.7);
+  --dial-text-primary: rgba(255, 255, 255, 0.95);
+  --dial-text-secondary: rgba(255, 255, 255, 0.6);
+  --dial-text-tertiary: rgba(255, 255, 255, 0.4);
+
+  /* Borders */
+  --dial-border: rgba(255, 255, 255, 0.1);
+  --dial-border-hover: rgba(255, 255, 255, 0.15);
+
+  /* Glassmorphic panel */
+  --dial-glass-bg: #212121;
+  --dial-backdrop-blur: 20px;
+  --dial-radius: 8px;
+  --dial-row-height: 36px;
+  --dial-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  /* Fonts */
+  font-family: system-ui, -apple-system, 'SF Pro Display', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Layout */
+  position: fixed;
+  z-index: 9999;
+  max-height: calc(100vh - 32px);
+  overflow: visible;
+  width: 280px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#dial-kit-panel.dk-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Positions */
+#dial-kit-panel.dk-pos-top-right    { top: 16px; right: 16px; }
+#dial-kit-panel.dk-pos-top-left     { top: 16px; left: 16px; }
+#dial-kit-panel.dk-pos-bottom-right { bottom: 16px; right: 16px; }
+#dial-kit-panel.dk-pos-bottom-left  { bottom: 16px; left: 16px; }
+#dial-kit-panel.dk-pos-middle-right { top: 50%; right: 16px; transform: translateY(-50%); }
+#dial-kit-panel.dk-pos-middle-right.dk-visible { transform: translateY(-50%); opacity: 1; }
+
+/* ── Panel Inner ── */
+#dial-kit-panel .dk-panel-inner {
+  background: var(--dial-glass-bg);
+  border: 1px solid var(--dial-border);
+  border-radius: 14px;
+  backdrop-filter: blur(var(--dial-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--dial-backdrop-blur));
+  padding: 10px 12px 12px 12px;
+  transform: translateZ(0);
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  box-shadow: var(--dial-shadow);
+
+  /* Hidden scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#dial-kit-panel .dk-panel-inner::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Panel Header ── */
+#dial-kit-panel .dk-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: grab;
+  user-select: none;
+}
+
+#dial-kit-panel .dk-header:active { cursor: grabbing; }
+
+#dial-kit-panel .dk-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dial-text-root);
+}
+
+#dial-kit-panel .dk-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#dial-kit-panel .dk-header-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--dial-text-section);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+
+#dial-kit-panel .dk-header-btn:hover {
+  background: var(--dial-surface-hover);
+  color: var(--dial-text-primary);
+}
+
+#dial-kit-panel .dk-header-btn.dk-copied {
+  color: #30d158;
+}
+
+/* ── Toolbar (presets + copy) ── */
+#dial-kit-panel .dk-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--dial-row-height);
+  margin-bottom: 6px;
+}
+
+#dial-kit-panel .dk-toolbar-copy {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--dial-row-height);
+  padding: 0 12px;
+  flex: 1;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+  background: var(--dial-surface);
+  border: none;
+  border-radius: var(--dial-radius);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#dial-kit-panel .dk-toolbar-copy:hover {
+  background: var(--dial-surface-hover);
+}
+
+/* ── Section (Folder) ── */
+#dial-kit-panel .dk-section {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#dial-kit-panel .dk-section:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+#dial-kit-panel .dk-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 8px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+#dial-kit-panel .dk-section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+#dial-kit-panel .dk-section-chevron {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  color: var(--dial-text-label);
+  opacity: 0.6;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+}
+
+#dial-kit-panel .dk-section.dk-collapsed .dk-section-chevron {
+  transform: rotate(-90deg);
+}
+
+#dial-kit-panel .dk-section-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dial-text-section);
+  letter-spacing: -0.01em;
+}
+
+#dial-kit-panel .dk-section-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#dial-kit-panel .dk-section.dk-collapsed .dk-section-controls {
+  display: none;
+}
+
+/* ── Slider ── */
+#dial-kit-panel .dk-slider-wrapper {
+  position: relative;
+  height: var(--dial-row-height);
+}
+
+#dial-kit-panel .dk-slider-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  background: var(--dial-surface);
+  border-radius: var(--dial-radius);
+  touch-action: none;
+}
+
+#dial-kit-panel .dk-slider-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+  transition: background 0.15s;
+}
+
+#dial-kit-panel .dk-slider-handle {
+  position: absolute;
+  top: 50%;
+  width: 3px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+#dial-kit-panel .dk-slider-label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(calc(-50% - 0.5px));
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+  pointer-events: none;
+  transition: color 0.15s;
+}
+
+#dial-kit-panel .dk-slider-value {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(calc(-50% + 0.5px));
+  font-size: 13px;
+  font-weight: 500;
+  font-family: ui-monospace, 'SF Mono', 'Courier New', monospace;
+  color: var(--dial-text-label);
+  pointer-events: none;
+  transition: color 0.15s;
+}
+
+#dial-kit-panel .dk-slider-wrapper.dk-active .dk-slider-value {
+  color: #fff;
+}
+
+#dial-kit-panel .dk-slider-wrapper.dk-active .dk-slider-fill {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Native range input (invisible, overlays the track for interaction) */
+#dial-kit-panel .dk-slider-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* ── Toggle (Off/On segmented) ── */
+#dial-kit-panel .dk-toggle-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--dial-row-height);
+  padding: 0 12px;
+  background: var(--dial-surface);
+  border-radius: var(--dial-radius);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+#dial-kit-panel .dk-toggle-row:hover {
+  background: var(--dial-surface-hover);
+}
+
+#dial-kit-panel .dk-toggle-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+  transition: color 0.15s;
+}
+
+#dial-kit-panel .dk-toggle-row[data-checked="true"] .dk-toggle-label {
+  color: var(--dial-text-primary);
+}
+
+#dial-kit-panel .dk-toggle-track {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--dial-surface-active);
+  transition: background 0.2s;
+  position: relative;
+  flex-shrink: 0;
+}
+
+#dial-kit-panel .dk-toggle-row[data-checked="true"] .dk-toggle-track {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#dial-kit-panel .dk-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: transform 0.2s;
+}
+
+#dial-kit-panel .dk-toggle-row[data-checked="true"] .dk-toggle-thumb {
+  transform: translateX(16px);
+}
+
+#dial-kit-panel .dk-toggle-row input { display: none; }
+
+/* ── Color ── */
+#dial-kit-panel .dk-color-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: var(--dial-row-height);
+  padding: 0 12px;
+  background: var(--dial-surface);
+  border-radius: var(--dial-radius);
+}
+
+#dial-kit-panel .dk-color-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+  flex-shrink: 0;
+}
+
+#dial-kit-panel .dk-color-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#dial-kit-panel .dk-color-hex {
+  font-size: 13px;
+  font-weight: 500;
+  font-family: ui-monospace, 'SF Mono', 'Courier New', monospace;
+  color: var(--dial-text-label);
+}
+
+#dial-kit-panel .dk-color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.15s;
+  padding: 0;
+}
+
+#dial-kit-panel .dk-color-swatch:hover {
+  transform: scale(1.1);
+}
+
+#dial-kit-panel .dk-color-native {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Select ── */
+#dial-kit-panel .dk-select-row {
+  position: relative;
+}
+
+#dial-kit-panel .dk-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--dial-row-height);
+  padding: 0 12px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+  background: var(--dial-surface);
+  border: none;
+  border-radius: var(--dial-radius);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#dial-kit-panel .dk-select-trigger:hover {
+  background: var(--dial-surface-hover);
+}
+
+#dial-kit-panel .dk-select-trigger[data-open="true"] {
+  background: var(--dial-surface-active);
+}
+
+#dial-kit-panel .dk-select-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+}
+
+#dial-kit-panel .dk-select-chevron {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  box-sizing: border-box;
+  opacity: 0.6;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#dial-kit-panel .dk-select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--dial-glass-bg);
+  border: 1px solid var(--dial-border);
+  border-radius: var(--dial-radius);
+  padding: 4px;
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+#dial-kit-panel .dk-select-option {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+#dial-kit-panel .dk-select-option:hover {
+  background: var(--dial-surface-hover);
+}
+
+#dial-kit-panel .dk-select-option[data-selected="true"] {
+  color: var(--dial-text-primary);
+  background: var(--dial-surface-active);
+}
+
+/* ── Text Input ── */
+#dial-kit-panel .dk-text-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: var(--dial-row-height);
+  padding: 0 12px;
+  background: var(--dial-surface);
+  border-radius: var(--dial-radius);
+}
+
+#dial-kit-panel .dk-text-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+  flex-shrink: 0;
+}
+
+#dial-kit-panel .dk-text-input {
+  flex: 1;
+  min-width: 0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-label);
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  text-align: right;
+}
+
+#dial-kit-panel .dk-text-input:focus {
+  color: #fff;
+}
+
+#dial-kit-panel .dk-text-input::placeholder {
+  color: var(--dial-text-tertiary);
+}
+
+/* ── Action Button ── */
+#dial-kit-panel .dk-action-btn {
+  flex: 1;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dial-text-secondary);
+  background: var(--dial-surface);
+  border: none;
+  border-radius: var(--dial-radius);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  width: 100%;
+}
+
+#dial-kit-panel .dk-action-btn:hover {
+  background: var(--dial-surface-hover);
+  color: var(--dial-text-primary);
+}
+
+#dial-kit-panel .dk-action-btn:active {
+  background: var(--dial-surface-active);
+}
+
+/* ── Group / Folder ── */
+#dial-kit-panel .dk-group {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-bottom: 0;
+}
+
+#dial-kit-panel .dk-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--dial-row-height);
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+#dial-kit-panel .dk-group-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#dial-kit-panel .dk-group-chevron {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  color: var(--dial-text-label);
+  opacity: 0.6;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+}
+
+#dial-kit-panel .dk-group.dk-collapsed .dk-group-chevron {
+  transform: rotate(-90deg);
+}
+
+#dial-kit-panel .dk-group-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dial-text-section);
+  letter-spacing: -0.01em;
+}
+
+#dial-kit-panel .dk-group-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 10px;
+}
+
+#dial-kit-panel .dk-group.dk-collapsed .dk-group-controls {
+  display: none;
+}
+
+/* ── Highlight ring ── */
+[data-dial-kit].dk-highlight {
+  outline: 2px solid rgba(255, 255, 255, 0.25) !important;
+  outline-offset: 2px;
+}
+
+/* ── Empty state ── */
+#dial-kit-panel .dk-empty {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--dial-text-tertiary);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ── Toggle button (collapsed state) ── */
+#dial-kit-toggle {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--dial-glass-bg, #212121);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  -webkit-font-smoothing: antialiased;
+  z-index: 9998;
+}
+
+#dial-kit-toggle:hover {
+  color: #fff;
+}
+
+#dial-kit-toggle.dk-pos-top-right    { top: 16px; right: 16px; }
+#dial-kit-toggle.dk-pos-top-left     { top: 16px; left: 16px; }
+#dial-kit-toggle.dk-pos-bottom-right { bottom: 16px; right: 16px; }
+#dial-kit-toggle.dk-pos-bottom-left  { bottom: 16px; left: 16px; }
+#dial-kit-toggle.dk-pos-middle-right { top: 50%; right: 16px; transform: translateY(-50%); }
+
+#dial-kit-toggle.dk-hidden { opacity: 0; pointer-events: none; }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  #dial-kit-panel { width: calc(100vw - 32px); max-width: 280px; }
+}
