@@ -1,6 +1,6 @@
 # DialKit for Rails
 
-Live CSS tuning panel for Rails. Add sliders, toggles, and controls to any element and adjust values in real-time without page reloads.
+A Rails port of [Josh Puckett's DialKit](https://www.npmjs.com/package/dialkit) for React. Live CSS tuning panel — add sliders, toggles, and controls to any element and adjust values in real-time without page reloads.
 
 Development-only. Zero config. No JS build changes.
 
